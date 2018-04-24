@@ -15,6 +15,18 @@ export class CarrinhoComprasComponent implements OnInit {
     return this.carrinhoComprasService.items;
   }
 
+  clear(){
+    this.carrinhoComprasService.clearItens();
+  }
+
+  removeItem(item: any){
+    this.carrinhoComprasService.removeItem(item);
+  }
+
+  addItem(item: any){
+    this.carrinhoComprasService.addItem(item);
+  }
+
   total(): number{
     return this.carrinhoComprasService.total();
   }
