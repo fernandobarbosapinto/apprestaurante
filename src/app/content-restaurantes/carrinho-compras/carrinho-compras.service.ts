@@ -11,7 +11,7 @@ export class CarrinhoComprasService{
     addItem(item:MenuItem){
         let procurarItem = this.items.find((mItem) => mItem.menuItem.id === item.id);
         if(procurarItem){
-            procurarItem.quantity = procurarItem.quantity +1;
+            this.increaseQty(procurarItem);
         }else{
             this.items.push(new CarrinhoItem(item));
         }
@@ -25,5 +25,16 @@ export class CarrinhoComprasService{
         return this.items
             .map(item => item.value())
                 .reduce((prev, value) => prev+value, 0);
+    }
+
+    increaseQty(item: CarrinhoItem){
+        item.quantity = item.quantity + 1;
+    }
+
+    decreaseQty(item: CarrinhoItem){
+        item.quantity = item.quantity - 1;
+        if(item.quantity === 0){
+            this.removeItem(item);
+        }
     }
 }
