@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RadioOption } from '../shared/radio/radio-option.model';
 import { OrderService } from './order.service';
 import { CarrinhoItem } from '../content-restaurantes/carrinho-compras/carrinho-item.model';
+import {Order, OrderItem} from './order.module';
 
 @Component({
   selector: 'mt-order',
@@ -40,6 +41,17 @@ export class OrderComponent implements OnInit {
 
   remove(item: CarrinhoItem){
     this.orderService.remove(item);
+  }
+
+  checkOrder(order:Order){
+    order.orderItems =  this.cartItems()
+      .map((item:CarrinhoItem) => new OrderItem(item.quantity, item.menuItem.id))
+    this.orderService.checkOrder(order)
+      .subscribe((orderID: string) => {
+        console.log(`Compra concluída: ${orderID}`)
+        this.orderService.clear();
+      })
+    console.log(order);
   }
 
 }
