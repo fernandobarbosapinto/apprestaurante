@@ -8,6 +8,10 @@ export class OrderService{
 
     constructor(private carrinhoComprasService: CarrinhoComprasService){}
 
+    itemsValue(): number{
+        return this.carrinhoComprasService.total();
+    }
+
     cartItems(): CarrinhoItem[]{
         return this.carrinhoComprasService.items
     }
