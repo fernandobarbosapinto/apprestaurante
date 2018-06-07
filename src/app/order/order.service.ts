@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { CarrinhoComprasService } from '../content-restaurantes/carrinho-compras/carrinho-compras.service';
 import { CarrinhoItem } from '../content-restaurantes/carrinho-compras/carrinho-item.model';
-import { Order, OrderItem } from './order.module';
+import { Order, OrderItem } from './order.model';
 import { MEAT_API } from '../app.api'
 
 @Injectable()
