@@ -1,8 +1,14 @@
 import { CarrinhoItem } from "./carrinho-item.model";
 import { MenuItem } from "../menu-item/menu-item.model";
+import { Injectable } from "@angular/core";
+import { NotificationService } from "../../shared/messages/notification.service";
+
+@Injectable()
 
 export class CarrinhoComprasService{
     items: CarrinhoItem[] = []
+
+    constructor(private notificationService: NotificationService){}
 
     clearItens(){
         this.items = [];
@@ -15,10 +21,12 @@ export class CarrinhoComprasService{
         }else{
             this.items.push(new CarrinhoItem(item));
         }
+        this.notificationService.notify(`Você adicionou um item ${item.name}`);
     }
 
     removeItem(item:CarrinhoItem){
         this.items.splice(this.items.indexOf(item), 1);
+        this.notificationService.notify(`Você removeu um item ${item.menuItem.name}`);
     }
 
     total():number{
