@@ -5,7 +5,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { DetailsRestaurante } from './detalhe-restaurantes/detalhe-restaurantes.model';
 import { MEAT_API } from '../app.api';
-import { ErrorHandler } from '../app.error-handler';
+
+
 import { MenuItem } from '../content-restaurantes/menu-item/menu-item.model';
 
 @Injectable()

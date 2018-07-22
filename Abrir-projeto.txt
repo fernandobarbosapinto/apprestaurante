@@ -1,0 +1,2 @@
+1. ng serve --open 
+2. nodemon --watch backend backend/dist/server.js

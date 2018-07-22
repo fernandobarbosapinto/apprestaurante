@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { CarrinhoComprasService } from '../content-restaurantes/carrinho-compras/carrinho-compras.service';
 import { CarrinhoItem } from '../content-restaurantes/carrinho-compras/carrinho-item.model';
 import { Order, OrderItem } from './order.model';
-import { MEAT_API } from '../app.api'
+import { MEAT_API } from '../app.api';
 
 @Injectable()
 
 export class OrderService{
 
-    constructor(private carrinhoComprasService: CarrinhoComprasService, private http: HttpClient){}
+    constructor(
+        private carrinhoComprasService: CarrinhoComprasService,
+        private http: HttpClient) {}
 
     itemsValue(): number{
         return this.carrinhoComprasService.total();
@@ -37,8 +39,8 @@ export class OrderService{
         this.carrinhoComprasService.clearItens();
     }
 
-    checkOrder(order:Order): Observable<string>{
-        return this.http.post<Order>(`${MEAT_API}/orders`, order)
-                        .map(order => order.id)
+    checkOrder(order: Order): Observable<string> {
+      return this.http.post<Order>(`${MEAT_API}/orders`, order)
+                      .map(order => order.id)
     }
 }

@@ -7,9 +7,13 @@ import { MenuComponent } from './content-restaurantes/menu/menu.component';
 import { ReviewsComponent } from './content-restaurantes/reviews/reviews.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { LoginComponent } from './security/login/login.component';
+import { LoggedInGuard } from './security/login/loggedin.guard';
 
 export const ROUTES: Routes = [
     {path: '', component: HomeComponent},
+    {path: 'login', component: LoginComponent},
+    {path: 'login/:to', component: LoginComponent},
     {path: 'restaurantes', component: RestaurantesComponent},
     {path: 'restaurantes/:id', component: ContentRestaurantesComponent,
         children:[
@@ -20,6 +24,6 @@ export const ROUTES: Routes = [
     },
     {path: 'about', loadChildren: './about/about.module#AboutModule'},
     {path: 'order-summary', component: OrderSummaryComponent},
-    {path: 'order', loadChildren: './order/order.module#OrderModule'},
+    {path: 'order', loadChildren: './order/order.module#OrderModule', canLoad: [LoggedInGuard], canActivate: [LoggedInGuard]},
     {path: '**', component: NotFoundComponent}
 ]
